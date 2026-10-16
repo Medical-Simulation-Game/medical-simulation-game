@@ -1,5 +1,7 @@
 package com.manager;
 
+import com.patient.Patient;
+
 import java.util.Random;
 
 // 랜덤 이벤트 발생
