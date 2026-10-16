@@ -1,6 +1,8 @@
 package com.patient;
 
 
+import java.util.Random;
+
 public abstract class Patient {
 
     protected String name;
@@ -43,4 +45,37 @@ public abstract class Patient {
     public boolean isAlive() {
         return hp > 0;
     }
+
+
+    // 자식 클래스가 각자의 증상 목록을 반환
+    public abstract String[] getSymptoms();
+
+    // 증상 4개 랜덤 추출
+    public String[] getRandomSymptoms() {
+
+        final int SYMPTOM_NUM = 2;
+
+        String[] symptoms = getSymptoms();
+        String[] result = new String[SYMPTOM_NUM];
+
+        Random random = new Random();
+        boolean[] selected = new boolean[symptoms.length];
+
+
+
+        for (int i = 0; i < SYMPTOM_NUM; i++) {
+            int index;
+
+            do {
+                index = random.nextInt(symptoms.length);
+            } while (selected[index]);
+
+            selected[index] = true;
+            result[i] = symptoms[index];
+        }
+
+        return result;
+    }
+
+
 }

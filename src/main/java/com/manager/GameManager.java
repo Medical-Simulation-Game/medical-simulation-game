@@ -64,6 +64,14 @@ public class GameManager {
          System.out.println("\n[" + patient.getName() + " 진단 단계]");
          System.out.println("환자 초기 HP: " + patient.getHp());
          // TODO: 환자 증상 불러오기
+         // ===========================================================================
+         String[] symptoms = patient.getRandomSymptoms();
+
+         for (String symptom : symptoms) {
+             System.out.println("- " + symptom);
+         }
+
+         // ===========================================================================
 
          int tryCount = 0;
          while(tryCount < MAX_DIAGNOSIS_COUNT && patient.isAlive()) {
@@ -165,15 +173,15 @@ public class GameManager {
                 + successCount + "/" + TOTAL_PATIENTS);
 
         if (successCount == 5) {
-            System.out.println("최종 등급: 전설의 명의");
+            System.out.println("최종 등급: 🏆전설의 명의🏆");
         } else if (successCount == 4) {
-            System.out.println("최종 등급: 최고의 전문의");
+            System.out.println("최종 등급: 🥈최고의 전문의🥈");
         } else if (successCount == 3) {
-            System.out.println("최종 등급: 유능한 의사");
+            System.out.println("최종 등급: 🥉유능한 의사🥉");
         } else if (successCount == 1 || successCount == 2) {
-            System.out.println("최종 등급: 수련 의사");
+            System.out.println("최종 등급: 🩺수련 의사🩺");
         } else {
-            System.out.println("최종 등급: 인턴 의사");
+            System.out.println("최종 등급: 🔰인턴 의사🔰");
         }
 
         System.out.println("\n게임이 종료되었습니다.");

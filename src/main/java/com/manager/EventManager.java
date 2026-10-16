@@ -23,7 +23,7 @@ public class EventManager {
 
             case 1:
                 System.out.println("🚁 의료 지원 도착!");
-                // hp 10 회복
+                // hp 15 회복
                 patient.heal(15);
                 break;
 
