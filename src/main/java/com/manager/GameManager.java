@@ -6,6 +6,7 @@ import com.treatment.InjectionTreatment;
 import com.treatment.MedicineTreatment;
 import com.treatment.Treatment;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -28,14 +29,24 @@ public class GameManager {
      private final int MAX_DIAGNOSIS_COUNT = 2;
 
     private int inputChoice() {
-        int choice = sc.nextInt();
 
-        if (choice == 0) {
-            System.out.println("게임을 종료합니다.");
-            System.exit(0);
+        while (true) {
+            try {
+                int choice = sc.nextInt();
+
+                if (choice == 0) {
+                    System.out.println("게임을 종료합니다.");
+                    System.exit(0);
+                }
+
+                return choice;
+
+            } catch (InputMismatchException e) {
+                System.out.println("숫자만 입력해주세요.");
+                sc.nextLine(); // 잘못 입력한 값 제거
+                System.out.print("다시 선택: ");
+            }
         }
-
-        return choice;
     }
 
      public void startGame() {
