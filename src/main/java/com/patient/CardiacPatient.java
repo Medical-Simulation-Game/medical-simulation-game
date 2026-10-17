@@ -11,12 +11,12 @@ public class CardiacPatient extends Patient {
     public int getInitialHp() {
         return getRandomHp(10, 60);
     }
+    // 질병마다 위험도가 다르니 초기 HP 범위를 다르게 설정하고, 환자마다 랜덤 HP 부여
 
     @Override
     public String getPatientType() {
         return "심장 질환 환자";
     }
-
 
     // 심장 질환 환자 증상 목록
     private final String[] symptoms = {
@@ -34,8 +34,5 @@ public class CardiacPatient extends Patient {
     public String[] getSymptoms() {
         return symptoms;
     }
-
-
-
 
 }

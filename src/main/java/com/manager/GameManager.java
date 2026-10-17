@@ -27,6 +27,17 @@ public class GameManager {
      // 진단 횟수
      private final int MAX_DIAGNOSIS_COUNT = 2;
 
+    private int inputChoice() {
+        int choice = sc.nextInt();
+
+        if (choice == 0) {
+            System.out.println("게임을 종료합니다.");
+            System.exit(0);
+        }
+
+        return choice;
+    }
+
      public void startGame() {
          System.out.println("응급24시 게임을 시작합니다!");
          System.out.println("총 5명의 환자를 치료하세요!");
@@ -76,9 +87,10 @@ public class GameManager {
 
              System.out.println("\n--- 질병 추리 " + tryCount + "/" + MAX_DIAGNOSIS_COUNT + " ---");
              System.out.println("1. 심장 질환  2. 외상 환자  3. 호흡기 질환");
+             System.out.println("0. 게임 종료");
              System.out.print("선택: ");
 
-             int choice = sc.nextInt();
+             int choice = inputChoice();
              String diagnosis = "";
              switch (choice) {
                  case 1:
@@ -147,9 +159,10 @@ public class GameManager {
          System.out.println("1. 약물 치료 (회복 30 / 성공률 80%)");
          System.out.println("2. 응급 주사 (회복 50 / 성공률 60%)");
          System.out.println("3. 응급 처치 (회복 70 / 성공률 40%)");
+         System.out.println("0. 게임 종료");
          System.out.print("선택:");
 
-         int choice = sc.nextInt();
+         int choice = inputChoice();
 
          switch (choice) {
              case 1:

@@ -11,6 +11,7 @@ public class TraumaPatient extends Patient {
     public int getInitialHp() {
         return getRandomHp(20, 80);
     }
+    // 질병마다 위험도가 다르니 초기 HP 범위를 다르게 설정하고, 환자마다 랜덤 HP 부여
 
     @Override
     public String getPatientType() {

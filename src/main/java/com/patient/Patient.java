@@ -1,6 +1,5 @@
 package com.patient;
 
-
 import java.util.Random;
 
 public abstract class Patient {
@@ -10,9 +9,8 @@ public abstract class Patient {
 
     public Patient(String name) {
         this.name = name;
-        this.hp = getInitialHp(); // 질병에 따라 hp 다름
+        this.hp = getInitialHp(); // 질병, 환자마다 hp 다름
     }
-
 
     // 자식 클래스에서 환자 종류에 따른 초기 HP 범위를 지정
     public abstract int getInitialHp();
@@ -54,7 +52,7 @@ public abstract class Patient {
     // 자식 클래스가 각자의 증상 목록을 반환
     public abstract String[] getSymptoms();
 
-    // 증상 4개 랜덤 추출
+    // 증상 2(SYMPTOM_NUM)개 랜덤 추출
     public String[] getRandomSymptoms() {
 
         final int SYMPTOM_NUM = 2;
@@ -64,7 +62,6 @@ public abstract class Patient {
 
         Random random = new Random();
         boolean[] selected = new boolean[symptoms.length];
-
 
 
         for (int i = 0; i < SYMPTOM_NUM; i++) {
