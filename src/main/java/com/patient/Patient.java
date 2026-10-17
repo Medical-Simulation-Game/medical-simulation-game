@@ -14,10 +14,14 @@ public abstract class Patient {
     }
 
 
-    // 자식 클래스마다 다르게 구현
-
-    // 시작 HP는 자식이 결정
+    // 자식 클래스에서 환자 종류에 따른 초기 HP 범위를 지정
     public abstract int getInitialHp();
+
+    // 전달받은 범위 내에서 랜덤한 초기 HP 생성
+    protected int getRandomHp(int min, int max){
+        Random random = new Random();
+        return random.nextInt(max-min+1) + min;
+    };
 
     // 환자종류 알려주는 메서드
     public abstract String getPatientType();

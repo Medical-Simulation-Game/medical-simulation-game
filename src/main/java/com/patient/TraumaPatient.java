@@ -9,7 +9,7 @@ public class TraumaPatient extends Patient {
 
     @Override
     public int getInitialHp() {
-        return 85;
+        return getRandomHp(20, 80);
     }
 
     @Override

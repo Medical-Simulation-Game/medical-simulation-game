@@ -35,8 +35,6 @@ public class GameManager {
          for(int i = 1; i <= TOTAL_PATIENTS; i++) {
              System.out.println("======= " + i + "번째 환자 =======");
 
-             // TODO: Patient에 증상 필드 추가
-             // TODO: Patient의 hp값도 랜덤으로 하는거 제안
              Patient patient = createPatient.createRandomPatient(i);
 
              // 질병 진단
@@ -63,15 +61,14 @@ public class GameManager {
      private boolean diagnosePatient(Patient patient) {
          System.out.println("\n[" + patient.getName() + " 진단 단계]");
          System.out.println("환자 초기 HP: " + patient.getHp());
-         // TODO: 환자 증상 불러오기
-         // ===========================================================================
+
+         // 환자 증상 불러오기
          String[] symptoms = patient.getRandomSymptoms();
 
          for (String symptom : symptoms) {
              System.out.println("- " + symptom);
          }
 
-         // ===========================================================================
 
          int tryCount = 0;
          while(tryCount < MAX_DIAGNOSIS_COUNT && patient.isAlive()) {

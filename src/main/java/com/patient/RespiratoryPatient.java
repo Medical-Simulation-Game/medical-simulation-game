@@ -9,7 +9,7 @@ public class RespiratoryPatient extends Patient {
 
     @Override
     public int getInitialHp() {
-        return 60;
+        return getRandomHp(50, 70);
     }
 
     @Override
