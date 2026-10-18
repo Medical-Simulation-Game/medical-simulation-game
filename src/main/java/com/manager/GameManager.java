@@ -6,6 +6,7 @@ import com.treatment.InjectionTreatment;
 import com.treatment.MedicineTreatment;
 import com.treatment.Treatment;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -27,6 +28,27 @@ public class GameManager {
      // 진단 횟수
      private final int MAX_DIAGNOSIS_COUNT = 2;
 
+    private int inputChoice() {
+
+        while (true) {
+            try {
+                int choice = sc.nextInt();
+
+                if (choice == 0) {
+                    System.out.println("게임을 종료합니다.");
+                    System.exit(0);
+                }
+
+                return choice;
+
+            } catch (InputMismatchException e) {
+                System.out.println("숫자만 입력해주세요.");
+                sc.nextLine(); // 잘못 입력한 값 제거
+                System.out.print("다시 선택: ");
+            }
+        }
+    }
+
      public void startGame() {
          System.out.println("응급24시 게임을 시작합니다!");
          System.out.println("총 5명의 환자를 치료하세요!");
@@ -35,8 +57,6 @@ public class GameManager {
          for(int i = 1; i <= TOTAL_PATIENTS; i++) {
              System.out.println("======= " + i + "번째 환자 =======");
 
-             // TODO: Patient에 증상 필드 추가
-             // TODO: Patient의 hp값도 랜덤으로 하는거 제안
              Patient patient = createPatient.createRandomPatient(i);
 
              // 질병 진단
@@ -63,15 +83,14 @@ public class GameManager {
      private boolean diagnosePatient(Patient patient) {
          System.out.println("\n[" + patient.getName() + " 진단 단계]");
          System.out.println("환자 초기 HP: " + patient.getHp());
-         // TODO: 환자 증상 불러오기
-         // ===========================================================================
+
+         // 환자 증상 불러오기
          String[] symptoms = patient.getRandomSymptoms();
 
          for (String symptom : symptoms) {
              System.out.println("- " + symptom);
          }
 
-         // ===========================================================================
 
          int tryCount = 0;
          while(tryCount < MAX_DIAGNOSIS_COUNT && patient.isAlive()) {
@@ -79,9 +98,10 @@ public class GameManager {
 
              System.out.println("\n--- 질병 추리 " + tryCount + "/" + MAX_DIAGNOSIS_COUNT + " ---");
              System.out.println("1. 심장 질환  2. 외상 환자  3. 호흡기 질환");
+             System.out.println("0. 게임 종료");
              System.out.print("선택: ");
 
-             int choice = sc.nextInt();
+             int choice = inputChoice();
              String diagnosis = "";
              switch (choice) {
                  case 1:
@@ -150,9 +170,10 @@ public class GameManager {
          System.out.println("1. 약물 치료 (회복 30 / 성공률 80%)");
          System.out.println("2. 응급 주사 (회복 50 / 성공률 60%)");
          System.out.println("3. 응급 처치 (회복 70 / 성공률 40%)");
+         System.out.println("0. 게임 종료");
          System.out.print("선택:");
 
-         int choice = sc.nextInt();
+         int choice = inputChoice();
 
          switch (choice) {
              case 1:

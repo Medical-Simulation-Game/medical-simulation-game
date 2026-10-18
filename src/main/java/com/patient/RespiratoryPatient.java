@@ -9,8 +9,9 @@ public class RespiratoryPatient extends Patient {
 
     @Override
     public int getInitialHp() {
-        return 60;
+        return getRandomHp(50, 70);
     }
+    // 질병마다 위험도가 다르니 초기 HP 범위를 다르게 설정하고, 환자마다 랜덤 HP 부여
 
     @Override
     public String getPatientType() {

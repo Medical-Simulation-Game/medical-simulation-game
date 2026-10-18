@@ -37,3 +37,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### 테스트용 파일 제외 ###
+src/main/java/com/run/Application2.java
+src/main/java/com/manager/EventManager.java
