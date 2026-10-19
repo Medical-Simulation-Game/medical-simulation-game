@@ -36,6 +36,7 @@ public class GameManager {
 
                 if (choice == 0) {
                     System.out.println("게임을 종료합니다.");
+                    showFinalRank();
                     System.exit(0);
                 }
 
@@ -135,35 +136,41 @@ public class GameManager {
          return false;
      }
 
-     private boolean treatPatient(Patient patient) {
-         System.out.println(patient.getName() + "치료 시작!");
-         System.out.println("초기 HP: " + patient.getHp());
+    private boolean treatPatient(Patient patient) {
+        System.out.println(patient.getName() + " 치료 시작!");
+        System.out.println("현재 HP: " + patient.getHp());
 
-         // 치료 횟수 카운트
-         int treatCount = 0;
-         while(treatCount < MAX_COUNT && patient.getHp() < 100 && patient.isAlive()) {
-             treatCount++;
+        int treatCount = 0;
+        while(treatCount < MAX_COUNT && patient.getHp() < 100 && patient.isAlive()) {
+            treatCount++;
+            System.out.println("\n--- 치료 시도 " + treatCount + "/" + MAX_COUNT + " ---");
+            System.out.println("현재 HP: " + patient.getHp());
 
-             System.out.println("\n--- 치료 턴 " + treatCount
-                     + "/" + MAX_COUNT + " ---");
-             System.out.println("현재 HP: " + patient.getHp());
+            Treatment treatment = selectTreatment();
 
-             Treatment treatment = selectTreatment();
+            System.out.println("\n[" + treatment.getName() + "] 시도!");
+            boolean isSuccess = treatment.treat(patient);
 
-             treatment.treat(patient);
+            if (isSuccess) {
+                System.out.println("치료 성공!");
+                System.out.println("회복량: " + treatment.getRecoveryAmount());
+            } else {
+                System.out.println("치료 실패!");
+                System.out.println("환자가 15의 피해를 입었습니다.");
+            }
+            System.out.println("현재 HP: " + patient.getHp());
 
-             if (!patient.isAlive()) {
-                 System.out.println("환자의 HP가 0이 되었습니다.");
-                 break;
-             }
-
-             if (patient.getHp() == 100) {
-                 System.out.println("HP 100 달성!");
-                 break;
-             }
-         }
-         return patient.isAlive() && patient.getHp() == 100;
-     }
+            if (!patient.isAlive()) {
+                System.out.println("환자가 사망했습니다.");
+                break;
+            }
+            if (patient.getHp() == 100) {
+                System.out.println("HP 100 달성! 치료 완료!");
+                break;
+            }
+        }
+        return patient.isAlive() && patient.getHp() == 100;
+    }
 
      public Treatment selectTreatment() {
          System.out.println("\n[치료 방법 선택]");
