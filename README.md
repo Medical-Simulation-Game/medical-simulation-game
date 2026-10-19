@@ -30,7 +30,7 @@ com/
 - **추상화** : ```Patient```, ```Treatment```와 같이 공통된 속성과 행위를 추출하여 추상 클래스로 정의했습니다
 - **캡슐화** : 환자의 체력인 ```hp```나 ```name```을 ```protected``` 접근 제어자로 선언하고, ```heal()```과 ```takeDamage()``` 메서드를 통해서만 체력이 변동되도록 작성했습니다
 - **상속** : 심장, 호흡기, 외상 환자 클래스는 ```Patient```를 상속받아 고유의 질병명과 증상을 구현했으며, 부모 클래스의 ```getRandomHp()``` 메서드를 사용해 각기 다른 초기 체력을 설정했습니다. 다양한 치료법 역시 ```Treatment```를 상속받아 세부 수치를 구현했습니다.
-- **다형성** : ```GameManager```에서는 구체적인 환자나 치료법 클래스에 의존하지 않고, 상위 타입인 ```Patient```와 ```Treatment```를 기반으로 동작하며, 오버라이딩된 메서드를 호출합니다
+- **다형성** : 게임의 흐름을 제어하는 ```GameManager``` 클래스에서는 환자나 치료법 자식 클래스(예: CardiacPatient, EmergencyTreatment)에 의존하지 않고, 상위 타입인 ```Patient```와 ```Treatment```를 기반으로 동작하며, 오버라이딩된 메서드를 호출합니다
 
 ### 게임 시연 화면
 <img width="506" height="482" alt="image" src="https://github.com/user-attachments/assets/f183b02b-081b-4410-98e1-2bbc6ce6f5e3" /><br />
